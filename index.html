@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Conversor de Moedas</title>
 </head>
 <script src="./scripts.js" defer></script>
+
 <body>
     <img class="logo" src="./assets/dinheiro1.png" alt="logo-money">
 
@@ -21,9 +23,12 @@
         <label>
             Converter <b>para</b>
             <select class="moeda-select">
-                <option>US$ Dólar Americano</option>
-                <option>€ Euro</option>
+                <option value="dolar">US$ Dólar Americano</option>
+                <option value="euro">€ Euro</option>
+                <option value="libra">£ Libra</option>
+                <option value="bitcoin">₿ Bitcoin</option>
             </select>
+
         </label>
 
         <label>
@@ -35,22 +40,30 @@
 
         <section>
             <div class="simbolos-box">
-                <img  src="./assets/real.png" alt="real">
+                <img src="./assets/real.png" alt="real">
                 <p class="moeda">Real Brasileiro</p>
                 <p class="valor-moeda-convertida">R$ 0,00</p>
             </div>
 
-            <img  class="seta-preta" src="./assets/seta-preta.png" alt="seta">
+
+            <img class="seta-preta" src="./assets/seta-preta.png" alt="seta">
 
             <div class="simbolos-box">
-                <img  src="./assets/dolar.png" alt="dolar">
-                <p class="moeda">Dólar Americano</p>
+                <img class="moeda-img" src="./assets/dolar.png" alt="dolar">
+                <p class="moeda" id="moeda-americana">Dólar Americano</p>
                 <p class="valor-moeda">US$ 0,00</p>
             </div>
+
+           
+
+
+            
+
         </section>
 
 
     </main>
-    
+
 </body>
+
 </html>
