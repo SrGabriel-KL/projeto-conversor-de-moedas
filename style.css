@@ -14,7 +14,7 @@ body {
 
 main {
     width: 500px;
-    background: #f4f4f4;
+    background: #ffffff;
     border-radius: 20px;
     margin: 0 auto;
     padding: 44px 24px 23px;
@@ -104,5 +104,18 @@ section {
 }
 
 
+@media (max-width: 480px) {
+    main {
+        min-height: 115vh;      /* estica o container para baixo */
+        padding-bottom: 40px;  /* dá “respiro” no final */
+    }
+    section {
+        margin-top: 120px; /* empurra a área dos símbolos para baixo */
+    }
+    button {
+        margin-top: 50px;
+    }
+
+}
 
 
