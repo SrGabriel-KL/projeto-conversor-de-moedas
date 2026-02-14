@@ -1,15 +1,15 @@
 const convertButton = document.querySelector(".convert-button")
 const moedaSelect = document.querySelector(".moeda-select")
 
-function convertValues() {
+async function convertValues() {
     const inputMoedaValor = Number(document.querySelector(".input-moeda").value)
     const valorReal = document.querySelector(".valor-moeda-convertida")
     const valorConvertido = document.querySelector(".valor-moeda")
 
-    const dolarToday = 5.2
-    const euroToday = 6.2
-    const libraToday = 5.0
-    const bitcoinToday = 69000
+    const cotacoes = await getCotacoes()
+
+
+
 
     valorReal.innerHTML = new Intl.NumberFormat("pt-BR", {
         style: "currency",
@@ -20,24 +20,43 @@ function convertValues() {
         valorConvertido.innerHTML = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
-        }).format(inputMoedaValor / dolarToday)
+        }).format(inputMoedaValor / cotacoes.dolar)
 
     } else if (moedaSelect.value === "euro") {
         valorConvertido.innerHTML = new Intl.NumberFormat("de-DE", {
             style: "currency",
             currency: "EUR"
-        }).format(inputMoedaValor / euroToday)
+        }).format(inputMoedaValor / cotacoes.euro)
 
     } else if (moedaSelect.value === "libra") {
         valorConvertido.innerHTML = new Intl.NumberFormat("en-GB", {
             style: "currency",
             currency: "GBP"
-        }).format(inputMoedaValor / libraToday)
+        }).format(inputMoedaValor / cotacoes.libra)
 
     } else if (moedaSelect.value === "bitcoin") {
-        valorConvertido.innerHTML = `₿ ${(inputMoedaValor / bitcoinToday).toFixed(8)}`
+        valorConvertido.innerHTML = `₿ ${(inputMoedaValor / cotacoes.bitcoin).toFixed(8)}`
     }
 }
+
+async function getCotacoes() {
+    const response = await fetch(
+        "https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL",
+        { cache: "no-store" }
+    )
+
+
+    const data = await response.json()
+
+    return {
+        dolar: Number(data.USDBRL.ask),
+        euro: Number(data.EURBRL.ask),
+        libra: Number(data.GBPBRL.ask),
+        bitcoin: Number(data.BTCBRL.ask)
+    }
+}
+
+
 
 function changeMoeda() {
     const moedaNome = document.getElementById("moeda-americana")
